@@ -709,6 +709,22 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
+  if (inputStudentEmail) {
+    inputStudentEmail.addEventListener("blur", () => {
+      if (inputStudentEmail.value) {
+        inputStudentEmail.value = inputStudentEmail.value.trim();
+      }
+    });
+  }
+
+  if (inputPersonalEmail) {
+    inputPersonalEmail.addEventListener("blur", () => {
+      if (inputPersonalEmail.value) {
+        inputPersonalEmail.value = inputPersonalEmail.value.trim();
+      }
+    });
+  }
+
   // -------------------------------------------------------------
   // 3. Onboarding Form Logic (Họ tên, MSSV, Lớp, Email SV, Email nhận tin, SĐT)
   // -------------------------------------------------------------
@@ -752,7 +768,13 @@ document.addEventListener("DOMContentLoaded", () => {
       const verifiedMajorClass = majorValidation.normalized || majorClass;
       if (inputMajorClass) inputMajorClass.value = verifiedMajorClass;
 
-      // 4. Validate Email sinh viên (Bắt buộc phải nhập đúng chữ sau @ là student.hiu.vn)
+      // 4. Validate Email sinh viên (Không được viết hoa, bắt buộc phải nhập đúng chữ sau @ là student.hiu.vn)
+      if (/[A-Z]/.test(studentEmail)) {
+        showFormError("Email sinh viên không được viết hoa. Vui lòng nhập toàn bộ bằng chữ thường (Ví dụ: 2211004567@student.hiu.vn).");
+        if (inputStudentEmail) inputStudentEmail.focus();
+        return;
+      }
+
       const studentEmailParts = studentEmail.split("@");
       if (studentEmailParts.length !== 2 || !studentEmailParts[0].trim()) {
         showFormError("Email sinh viên không hợp lệ. Vui lòng nhập đúng định dạng có @student.hiu.vn (Ví dụ: 2211004567@student.hiu.vn).");
@@ -766,7 +788,13 @@ document.addEventListener("DOMContentLoaded", () => {
         return;
       }
 
-      // 5. Validate Email nhận thông tin (Bắt buộc phải nhập đúng tên miền sau @)
+      // 5. Validate Email nhận thông tin (Không được viết hoa, bắt buộc phải nhập đúng tên miền sau @)
+      if (/[A-Z]/.test(personalEmail)) {
+        showFormError("Email nhận thông tin không được viết hoa. Vui lòng nhập toàn bộ bằng chữ thường (Ví dụ: abc@gmail.com).");
+        if (inputPersonalEmail) inputPersonalEmail.focus();
+        return;
+      }
+
       const personalEmailParts = personalEmail.split("@");
       if (personalEmailParts.length !== 2 || !personalEmailParts[0].trim()) {
         showFormError("Email nhận thông tin không hợp lệ. Vui lòng nhập đúng định dạng email (Ví dụ: abc@gmail.com).");
