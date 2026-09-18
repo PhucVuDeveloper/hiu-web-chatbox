@@ -1,0 +1,742 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Trường Đại học Quốc tế Hồng Bàng - Hong Bang International University (HIU)</title>
+  <meta name="description" content="Cổng thông tin chính thức Trường Đại học Quốc tế Hồng Bàng (HIU) - Đào tạo đa ngành mũi nhọn Y Dược, Kinh tế, Kỹ thuật công nghệ, Ngôn ngữ quốc tế. Tích hợp cổng tư vấn trực tuyến 24/7.">
+  
+  <!-- Google Fonts: Be Vietnam Pro -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400&display=swap" rel="stylesheet">
+  
+  <!-- Font Awesome 6 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  
+  <!-- Custom Stylesheet -->
+  <link rel="stylesheet" href="css/style.css?v=2.2">
+</head>
+<body>
+
+  <!-- ================= TOPBAR ================= -->
+  <div class="topbar">
+    <div class="container topbar-content">
+      <div class="topbar-left">
+        <a href="tel:0938692015" class="topbar-item">
+          <i class="fa-solid fa-phone-volume"></i>
+          <span>Hotline Tuyển sinh: <strong>0938.69.2015 - 0964.239.172</strong></span>
+        </a>
+        <a href="mailto:tuyensinh@hiu.vn" class="topbar-item">
+          <i class="fa-solid fa-envelope"></i>
+          <span>tuyensinh@hiu.vn</span>
+        </a>
+      </div>
+      <div class="topbar-right">
+        <span class="topbar-item">
+          <i class="fa-solid fa-location-dot"></i>
+          <span>215 Điện Biên Phủ, P.15, Q.Bình Thạnh, TP.HCM</span>
+        </span>
+        <a href="#chatbox" class="topbar-item" onclick="openHIUChat(); return false;">
+          <i class="fa-solid fa-circle-user"></i>
+          <span>Cổng Sinh viên</span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= MAIN HEADER / NAVBAR ================= -->
+  <header class="main-header">
+    <div class="container nav-container">
+      <a href="#" class="brand-logo">
+        <div class="logo-icon">
+          <i class="fa-solid fa-building-columns"></i>
+        </div>
+        <div class="logo-text">
+          <span class="title">ĐẠI HỌC QUỐC TẾ HỒNG BÀNG</span>
+          <span class="subtitle">HONG BANG INTERNATIONAL UNIVERSITY • HIU</span>
+        </div>
+      </a>
+
+      <nav class="nav-menu">
+        <a href="#gioi-thieu" class="nav-link active">Giới thiệu</a>
+        <a href="#nganh-hoc" class="nav-link">Ngành đào tạo</a>
+        <a href="#tuyen-sinh" class="nav-link">Tuyển sinh 2026</a>
+        <a href="#co-so-vat-chat" class="nav-link">Cơ sở vật chất</a>
+        <a href="#hoc-bong" class="nav-link">Học bổng & Học phí</a>
+        <a href="#lien-he" class="nav-link">Liên hệ</a>
+      </nav>
+
+      <div class="nav-cta">
+        <button class="btn-primary" style="background: #0F172A; border-color: #334155; margin-right: 8px;" onclick="openHIUTicketDatabaseModal()" title="Xem cơ sở dữ liệu phiếu tiếp nhận hỗ trợ">
+          <i class="fa-solid fa-database"></i>
+          <span>CSDL Phiếu</span>
+        </button>
+        <button class="btn-primary" onclick="openHIUChat()">
+          <i class="fa-solid fa-headset"></i>
+          <span>Hỗ trợ CNTT</span>
+        </button>
+        <button class="mobile-toggle" id="mobileToggle" aria-label="Menu">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ================= HERO BANNER ================= -->
+  <section class="hero-section" id="gioi-thieu">
+    <div class="hero-pattern"></div>
+    <div class="container hero-grid">
+      <div class="hero-content">
+        <div class="hero-badge">
+          <i class="fa-solid fa-sparkles"></i>
+          <span>Tuyển Sinh Đại Học Chính Quy 2026</span>
+        </div>
+        <h1 class="hero-title">
+          Vươn Tầm Quốc Tế Cùng <span>Đại Học Hồng Bàng</span>
+        </h1>
+        <p class="hero-desc">
+          Môi trường đào tạo chuẩn 5 sao với tòa nhà biểu tượng "Con tàu tri thức" 25 tầng. 
+          Tiên phong trong khối ngành Sức khỏe (Y khoa, Răng Hàm Mặt, Dược), Kinh tế số, Công nghệ AI và Ngôn ngữ toàn cầu.
+        </p>
+        <div class="hero-actions">
+          <a href="#tuyen-sinh" class="btn-gold">
+            <i class="fa-solid fa-pen-nib"></i>
+            <span>Đăng ký xét tuyển sớm</span>
+          </a>
+          <a href="#nganh-hoc" class="btn-outline-white">
+            <i class="fa-solid fa-graduation-cap"></i>
+            <span>Khám phá 40+ ngành học</span>
+          </a>
+        </div>
+      </div>
+
+      <div class="hero-card">
+        <div class="hero-card-header">
+          <div>
+            <h3 style="font-size: 1.15rem; font-weight: 800; color: #fff;">Thông Tin Tuyển Sinh 2026</h3>
+            <p style="font-size: 0.8rem; color: #CBD5E1;">Cập nhật mới nhất từ Hội đồng Tuyển sinh</p>
+          </div>
+          <span class="hero-card-badge">Đang mở</span>
+        </div>
+
+        <div class="hero-card-items">
+          <div class="hero-feature-item">
+            <div class="hero-feature-icon">
+              <i class="fa-solid fa-file-signature"></i>
+            </div>
+            <div class="hero-feature-info">
+              <h4>Xét tuyển học bạ đợt 1</h4>
+              <p>Xét tổng điểm 3 học kỳ hoặc điểm cả năm lớp 12. Cơ hội giữ suất ngành Y, Dược, Kinh tế.</p>
+            </div>
+          </div>
+
+          <div class="hero-feature-item">
+            <div class="hero-feature-icon">
+              <i class="fa-solid fa-award"></i>
+            </div>
+            <div class="hero-feature-info">
+              <h4>Quỹ học bổng 30 tỷ đồng</h4>
+              <p>Học bổng Doanh nghiệp 100%, Học bổng Tài năng và Ưu đãi nhập học sớm hấp dẫn.</p>
+            </div>
+          </div>
+
+          <div class="hero-feature-item">
+            <div class="hero-feature-icon">
+              <i class="fa-solid fa-headset"></i>
+            </div>
+            <div class="hero-feature-info">
+              <h4>Hỗ trợ CNTT trực tuyến</h4>
+              <p>Tích hợp trực tiếp góc phải màn hình. Tiếp nhận và xử lý sự cố tài khoản, dịch vụ trực tuyến cho sinh viên.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= STATISTICS BAR ================= -->
+  <section class="stats-section">
+    <div class="container">
+      <div class="stats-card">
+        <div class="stat-box">
+          <div class="stat-number" data-target="28" data-suffix="+">0</div>
+          <div class="stat-title">Năm hình thành & phát triển vững chắc</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-number" data-target="40" data-suffix="+">0</div>
+          <div class="stat-title">Ngành đào tạo đại học & sau đại học</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-number" data-target="98" data-suffix="%">0</div>
+          <div class="stat-title">Tỷ lệ sinh viên có việc làm ngay khi tốt nghiệp</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-number" data-target="50" data-suffix="+">0</div>
+          <div class="stat-title">Trường ĐH & Viện nghiên cứu đối tác quốc tế</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= MAJORS / FACULTIES SECTION ================= -->
+  <section class="section" id="nganh-hoc">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-sub">Chương trình đào tạo</span>
+        <h2 class="section-title">Các Khối Ngành Đào Tạo Mũi Nhọn Tại HIU</h2>
+        <p class="section-desc">
+          Đào tạo gắn liền thực tiễn với thời lượng thực hành lên đến 60%, liên kết mật thiết với các bệnh viện lớn và doanh nghiệp hàng đầu trong và ngoài nước.
+        </p>
+      </div>
+
+      <div class="programs-grid">
+        <!-- Khối Sức khỏe -->
+        <div class="program-card featured">
+          <div class="program-card-header">
+            <div class="program-icon">
+              <i class="fa-solid fa-heart-pulse"></i>
+            </div>
+            <div>
+              <h3 class="program-title">Khối Ngành Sức Khỏe</h3>
+              <span style="font-size: 0.78rem; color: #A51D24; font-weight: 700;">★ Mũi nhọn quốc tế</span>
+            </div>
+          </div>
+          <div class="program-card-body">
+            <ul class="major-list">
+              <li class="major-item"><i class="fa-solid fa-circle-check"></i> Y khoa (Bác sĩ đa khoa 6 năm)</li>
+              <li class="major-item"><i class="fa-solid fa-circle-check"></i> Răng Hàm Mặt</li>
+              <li class="major-item"><i class="fa-solid fa-circle-check"></i> Dược học (Dược sĩ ĐH 5 năm)</li>
+              <li class="major-item"><i class="fa-solid fa-circle-check"></i> Điều dưỡng chuẩn quốc tế</li>
+              <li class="major-item"><i class="fa-solid fa-circle-check"></i> Kỹ thuật Phục hồi chức năng</li>
+              <li class="major-item"><i class="fa-solid fa-circle-check"></i> Kỹ thuật Xét nghiệm y học</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Khối Kinh tế - Quản trị -->
+        <div class="program-card">
+          <div class="program-card-header">
+            <div class="program-icon">
+              <i class="fa-solid fa-chart-line"></i>
+            </div>
+            <div>
+              <h3 class="program-title">Kinh Tế - Quản Trị</h3>
+              <span style="font-size: 0.78rem; color: #64748B; font-weight: 600;">Hội nhập toàn cầu</span>
+            </div>
+          </div>
+          <div class="program-card-body">
+            <ul class="major-list">
+              <li class="major-item"><i class="fa-solid fa-circle-check"></i> Quản trị kinh doanh (Song ngữ)</li>
+              <li class="major-item"><i class="fa-solid fa-circle-check"></i> Marketing & Digital Marketing</li>
+              <li class="major-item"><i class="fa-solid fa-circle-check"></i> Logistics & Chuỗi cung ứng</li>
+              <li class="major-item"><i class="fa-solid fa-circle-check"></i> Tài chính - Ngân hàng / Fintech</li>
+              <li class="major-item"><i class="fa-solid fa-circle-check"></i> Thương mại điện tử</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Khối Kỹ thuật & Công nghệ -->
+        <div class="program-card">
+          <div class="program-card-header">
+            <div class="program-icon">
+              <i class="fa-solid fa-microchip"></i>
+            </div>
+            <div>
+              <h3 class="program-title">Kỹ Thuật & Công Nghệ</h3>
+              <span style="font-size: 0.78rem; color: #64748B; font-weight: 600;">Kỷ nguyên số 4.0</span>
+            </div>
+          </div>
+          <div class="program-card-body">
+            <ul class="major-list">
+              <li class="major-item"><i class="fa-solid fa-circle-check"></i> Công nghệ thông tin (CNTT)</li>
+              <li class="major-item"><i class="fa-solid fa-circle-check"></i> Trí tuệ nhân tạo (AI & Data)</li>
+              <li class="major-item"><i class="fa-solid fa-circle-check"></i> Kỹ thuật Y sinh tiên tiến</li>
+              <li class="major-item"><i class="fa-solid fa-circle-check"></i> Thiết kế đồ họa kỹ thuật số</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Khối Ngôn ngữ & Quốc tế -->
+        <div class="program-card">
+          <div class="program-card-header">
+            <div class="program-icon">
+              <i class="fa-solid fa-globe"></i>
+            </div>
+            <div>
+              <h3 class="program-title">Ngôn Ngữ Quốc Tế</h3>
+              <span style="font-size: 0.78rem; color: #64748B; font-weight: 600;">Cơ hội làm việc toàn cầu</span>
+            </div>
+          </div>
+          <div class="program-card-body">
+            <ul class="major-list">
+              <li class="major-item"><i class="fa-solid fa-circle-check"></i> Ngôn ngữ Anh</li>
+              <li class="major-item"><i class="fa-solid fa-circle-check"></i> Ngôn ngữ Hàn Quốc</li>
+              <li class="major-item"><i class="fa-solid fa-circle-check"></i> Ngôn ngữ Trung Quốc</li>
+              <li class="major-item"><i class="fa-solid fa-circle-check"></i> Ngôn ngữ Nhật Bản</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= ADMISSIONS METHODS SECTION ================= -->
+  <section class="section admission-section" id="tuyen-sinh">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-sub">Phương thức xét tuyển 2026</span>
+        <h2 class="section-title">4 Phương Thức Tuyển Sinh Linh Hoạt Tại HIU</h2>
+        <p class="section-desc">
+          Tối đa hóa cơ hội trúng tuyển đại học chính quy với các tiêu chí xét tuyển minh bạch và thuận tiện nhất cho thí sinh.
+        </p>
+      </div>
+
+      <div class="admission-grid">
+        <div class="method-card">
+          <span class="method-step">01</span>
+          <div class="method-icon"><i class="fa-solid fa-graduation-cap"></i></div>
+          <h3 class="method-title">Xét Điểm Thi THPT</h3>
+          <p class="method-desc">
+            Xét tổng điểm 3 môn thi tốt nghiệp THPT năm 2026 theo tổ hợp xét tuyển tương ứng của từng ngành học.
+          </p>
+        </div>
+
+        <div class="method-card">
+          <span class="method-step">02</span>
+          <div class="method-icon"><i class="fa-solid fa-book-open"></i></div>
+          <h3 class="method-title">Xét Kết Quả Học Bạ</h3>
+          <p class="method-desc">
+            Linh hoạt 3 phương thức: Điểm TB 3 học kỳ; hoặc Điểm TB tổ hợp 3 môn lớp 12; hoặc Điểm TB cả năm lớp 12 từ 18đ trở lên.
+          </p>
+        </div>
+
+        <div class="method-card">
+          <span class="method-step">03</span>
+          <div class="method-icon"><i class="fa-solid fa-brain"></i></div>
+          <h3 class="method-title">Xét Điểm Thi ĐGNL</h3>
+          <p class="method-desc">
+            Dựa trên kết quả kỳ thi Đánh giá năng lực của Đại học Quốc gia TP.HCM tổ chức trong năm 2026.
+          </p>
+        </div>
+
+        <div class="method-card">
+          <span class="method-step">04</span>
+          <div class="method-icon"><i class="fa-solid fa-star"></i></div>
+          <h3 class="method-title">Xét Tuyển Thẳng</h3>
+          <p class="method-desc">
+            Dành cho học sinh giỏi trường chuyên, đạt giải HSG quốc gia, chứng chỉ ngoại ngữ quốc tế (IELTS từ 5.0 trở lên, SAT...).
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= CAMPUS HIGHLIGHT SECTION ================= -->
+  <section class="section" id="co-so-vat-chat">
+    <div class="container">
+      <div class="campus-grid">
+        <div class="campus-image-wrapper">
+          <div class="campus-mockup">
+            <span class="campus-badge-tag"><i class="fa-solid fa-ship"></i> Biểu tượng Con Tàu Tri Thức</span>
+            <h3 class="campus-info-title">Tòa Nhà Trụ Sở 25 Tầng Chuẩn 5 Sao</h3>
+            <p class="campus-info-desc">
+              Tọa lạc tại vị trí đắc địa 215 Điện Biên Phủ, Quận Bình Thạnh. Không gian học tập hiện đại bậc nhất TP.HCM với thư viện số, phòng thực hành tiền lâm sàng y khoa và phức hợp thể thao đa năng.
+            </p>
+          </div>
+        </div>
+
+        <div class="campus-cards-col">
+          <div class="campus-detail-box">
+            <h4 class="campus-detail-title"><i class="fa-solid fa-map-pin"></i> Cơ sở 1 (Trụ sở chính)</h4>
+            <p class="campus-detail-text"><strong>Địa chỉ:</strong> 215 Điện Biên Phủ, Phường 15, Quận Bình Thạnh, TP.HCM</p>
+            <p class="campus-detail-text">Trung tâm đào tạo quốc tế, khối ngành Sức khỏe, phòng khám răng hàm mặt và giảng đường thông minh.</p>
+          </div>
+
+          <div class="campus-detail-box">
+            <h4 class="campus-detail-title"><i class="fa-solid fa-map-pin"></i> Cơ sở 2 (Khu thực hành & thể thao)</h4>
+            <p class="campus-detail-text"><strong>Địa chỉ:</strong> 120 Hòa Bình, Phường Hòa Thạnh, Quận Tân Phú, TP.HCM</p>
+            <p class="campus-detail-text">Khu liên hợp thể thao chuẩn quốc tế, xưởng thực hành công nghệ và sân bóng đá phục vụ sinh viên.</p>
+          </div>
+
+          <div class="campus-detail-box" style="background: #FDF2F2; border-color: #FECDD3;">
+            <h4 class="campus-detail-title" style="color: #A51D24;"><i class="fa-solid fa-phone"></i> Tổng Đài Hỗ Trợ Sinh Viên</h4>
+            <p class="campus-detail-text">Điện thoại: <strong>028.7308.3456</strong> | Hotline 24/7: <strong>0938.69.2015</strong></p>
+            <p class="campus-detail-text">Email tư vấn: <strong>tuyensinh@hiu.vn</strong></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= SCHOLARSHIP CTA SECTION ================= -->
+  <section class="section" id="hoc-bong" style="background: linear-gradient(135deg, #A51D24, #7D1217); color: #fff;">
+    <div class="container" style="text-align: center; max-width: 800px;">
+      <span style="background: rgba(253,185,19,0.25); color: #FDB913; font-weight: 700; font-size: 0.85rem; padding: 6px 18px; border-radius: 99px; display: inline-block; margin-bottom: 16px;">
+        Chính sách học bổng & tài chính
+      </span>
+      <h2 style="font-size: 2.3rem; font-weight: 900; margin-bottom: 16px; line-height: 1.3;">
+        Học Bổng Doanh Nghiệp Lên Đến 100% Học Phí
+      </h2>
+      <p style="font-size: 1.05rem; color: #FEE2E2; margin-bottom: 30px; line-height: 1.7;">
+        HIU cam kết học phí minh bạch và ổn định suốt toàn khóa học, áp dụng chương trình trả góp 0% lãi suất và quỹ học bổng đồng hành tiếp sức tài năng sinh viên.
+      </p>
+      <div style="display: flex; justify-content: center; gap: 16px; flex-wrap: wrap;">
+        <a href="#tuyen-sinh" class="btn-gold">
+          <i class="fa-solid fa-gift"></i>
+          <span>Xem chính sách học bổng</span>
+        </a>
+        <a href="#nganh-hoc" class="btn-outline-white">
+          <i class="fa-solid fa-graduation-cap"></i>
+          <span>Thông tin học phí theo ngành</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= FOOTER ================= -->
+  <footer class="main-footer" id="lien-he">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <h3>ĐH QUỐC TẾ HỒNG BÀNG</h3>
+          <p style="margin-bottom: 18px; font-size: 0.9rem; line-height: 1.7;">
+            Trường Đại học Quốc tế Hồng Bàng (HIU) đào tạo nguồn nhân lực chất lượng cao hội nhập thế giới, khơi nguồn sáng tạo và phát triển năng lực toàn diện.
+          </p>
+          <div style="display: flex; gap: 12px; font-size: 1.2rem; color: #FDB913;">
+            <a href="https://facebook.com/hiu.vn" target="_blank" aria-label="Facebook"><i class="fa-brands fa-facebook"></i></a>
+            <a href="https://youtube.com/hiu" target="_blank" aria-label="Youtube"><i class="fa-brands fa-youtube"></i></a>
+            <a href="https://tiktok.com/@hiu_official" target="_blank" aria-label="TikTok"><i class="fa-brands fa-tiktok"></i></a>
+            <a href="https://zalo.me/hiu" target="_blank" aria-label="Zalo"><i class="fa-solid fa-comment-dots"></i></a>
+          </div>
+        </div>
+
+        <div class="footer-col">
+          <h3>Khối Ngành</h3>
+          <div class="footer-links">
+            <a href="#nganh-hoc">Y khoa & Dược học</a>
+            <a href="#nganh-hoc">Răng Hàm Mặt</a>
+            <a href="#nganh-hoc">Quản trị kinh doanh & Marketing</a>
+            <a href="#nganh-hoc">Công nghệ thông tin & AI</a>
+            <a href="#nganh-hoc">Ngôn ngữ & Quan hệ quốc tế</a>
+          </div>
+        </div>
+
+        <div class="footer-col">
+          <h3>Tuyển Sinh & Học Phí</h3>
+          <div class="footer-links">
+            <a href="#tuyen-sinh">Phương thức xét tuyển 2026</a>
+            <a href="#tuyen-sinh">Đăng ký xét học bạ online</a>
+            <a href="#hoc-bong">Bảng học phí chuẩn</a>
+            <a href="#hoc-bong">Chính sách học bổng</a>
+            <a href="#co-so-vat-chat">Ký túc xá & Nhà trọ</a>
+          </div>
+        </div>
+
+        <div class="footer-col">
+          <h3>Thông Tin Liên Hệ</h3>
+          <div class="footer-contact-item">
+            <i class="fa-solid fa-location-dot"></i>
+            <div>
+              <strong>Cơ sở 1:</strong> 215 Điện Biên Phủ, P.15, Q. Bình Thạnh, TP.HCM
+            </div>
+          </div>
+          <div class="footer-contact-item">
+            <i class="fa-solid fa-map-location-dot"></i>
+            <div>
+              <strong>Cơ sở 2:</strong> 120 Hòa Bình, P. Hòa Thạnh, Q. Tân Phú, TP.HCM
+            </div>
+          </div>
+          <div class="footer-contact-item">
+            <i class="fa-solid fa-phone"></i>
+            <div>
+              <strong>Hotline:</strong> 0938.69.2015 - 0964.239.172
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div>
+          © 2026 Trường Đại học Quốc tế Hồng Bàng (HIU). Mọi quyền được bảo lưu.
+        </div>
+        <div>
+          Trực thuộc Tập đoàn Giáo dục Nguyễn Hoàng (NHG)
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- =========================================================
+       FLOATING CHATBOX COMPONENT (TƯ VẤN TRỰC TUYẾN HIU)
+       Yêu cầu nhập: Họ và tên, MSSV, SĐT trước khi bắt đầu chat
+       ========================================================= -->
+
+  <!-- 1. Floating Trigger Button (Góc dưới bên phải) -->
+  <div class="hiu-chat-trigger" id="hiuChatTrigger">
+    <div class="trigger-bubble">
+      <i class="fa-solid fa-headset"></i>
+      <span>Hỗ trợ CNTT</span>
+    </div>
+    <div class="trigger-circle">
+      <div class="trigger-pulse"></div>
+      <i class="fa-solid fa-comments"></i>
+      <span class="trigger-badge" id="chatUnreadBadge">1</span>
+    </div>
+  </div>
+
+  <!-- 2. Chatbox Modal Container -->
+  <div class="hiu-chatbox-container" id="hiuChatboxContainer">
+    <!-- Chatbox Header -->
+    <div class="chat-header">
+      <div class="chat-header-profile">
+        <div class="agent-avatar">
+          <i class="fa-solid fa-headset"></i>
+          <span class="status-dot" title="Đang trực tuyến"></span>
+        </div>
+        <div class="chat-header-info">
+          <h4>Hỗ Trợ CNTT - HIU</h4>
+          <p><i class="fa-solid fa-circle" style="font-size: 0.5rem; color: #34D399;"></i> Chuyên viên CNTT đang online</p>
+        </div>
+      </div>
+      <div class="chat-header-actions">
+        <button class="btn-chat-action" id="chatMinimizeBtn" title="Thu nhỏ"><i class="fa-solid fa-minus"></i></button>
+        <button class="btn-chat-action" id="chatCloseBtn" title="Đóng"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+    </div>
+
+    <!-- VIEW 1: BƯỚC THU THẬP THÔNG TIN (THEO BIỂU MẪU HỖ TRỢ CNTT HIU) -->
+    <div class="chat-body-view onboarding-container" id="onboardingView">
+      <div class="onboard-title-group">
+        <span class="onboard-badge">Phòng Công Nghệ Thông Tin HIU</span>
+        <h3>HỖ TRỢ CÔNG NGHỆ THÔNG TIN DÀNH CHO SINH VIÊN</h3>
+        <p class="onboard-subtitle-text">Để thuận tiện trong việc hỗ trợ cấp lại tài khoản Office 365 và các dịch vụ CNTT cho sinh viên, các bạn vui lòng điền đầy đủ thông tin theo biểu mẫu bên dưới.</p>
+      </div>
+
+      <!-- Khung thông báo chính thức từ biểu mẫu MS Form của HIU -->
+      <div class="onboard-notice-box">
+        <div class="notice-header">
+          <i class="fa-solid fa-circle-info"></i>
+          <span>Lưu ý phản hồi</span>
+        </div>
+        <p>Kết quả xử lý sẽ <strong>phản hồi qua cổng thông tin sinh viên sau 06g</strong> kể từ lúc bạn điền thông tin. Bạn đăng nhập vào mục <strong>Thông báo nhắc nhở</strong> để xem kết quả phản hồi.</p>
+        <div class="notice-contacts">
+          <div><i class="fa-solid fa-location-dot"></i> <strong>Điện Biên Phủ:</strong> Phòng 9.9</div>
+          <div><i class="fa-solid fa-envelope"></i> <strong>Email:</strong> itoffice@hiu.vn</div>
+          <div><i class="fa-solid fa-phone"></i> <strong>Hotline:</strong> 0817.971.901 (Zalo) | <strong>ĐT:</strong> 028.7308.3456 – ext: 3435</div>
+        </div>
+      </div>
+
+      <div class="form-error-alert" id="formErrorAlert"></div>
+
+      <form class="onboard-form" id="hiuOnboardForm">
+        <!-- 1. Họ và tên sinh viên -->
+        <div class="form-group">
+          <label class="form-label" for="inputFullName">
+            <span>Họ và Tên sinh viên <span class="required">*</span></span>
+          </label>
+          <div class="form-input-wrapper">
+            <i class="fa-solid fa-user"></i>
+            <input type="text" id="inputFullName" class="form-input" placeholder="Nhập đầy đủ Họ, tên đệm và tên (VD: Nguyễn Văn An)" required autocomplete="name">
+          </div>
+        </div>
+
+        <!-- 2. Mã số sinh viên -->
+        <div class="form-group">
+          <label class="form-label" for="inputMssv">
+            <span>Mã số sinh viên (MSSV) <span class="required">*</span></span>
+          </label>
+          <div class="form-input-wrapper">
+            <i class="fa-solid fa-id-card"></i>
+            <input type="text" id="inputMssv" class="form-input" placeholder="Nhập 10 chữ số (VD: 2211004567)" maxlength="10" minlength="10" pattern="[0-9]{10}" inputmode="numeric" required>
+          </div>
+        </div>
+
+        <!-- 3. Sinh viên học ngành - lớp -->
+        <div class="form-group">
+          <label class="form-label" for="inputMajorClass">
+            <span>Sinh viên học ngành - lớp <span class="required">*</span></span>
+          </label>
+          <div class="form-input-wrapper">
+            <i class="fa-solid fa-graduation-cap"></i>
+            <input type="text" id="inputMajorClass" class="form-input" placeholder="Ví dụ: CNTT - 22DHIT01" required>
+          </div>
+        </div>
+
+        <!-- 4. Email sinh viên -->
+        <div class="form-group">
+          <label class="form-label" for="inputStudentEmail">
+            <span>Email sinh viên (@student.hiu.vn) <span class="required">*</span></span>
+          </label>
+          <div class="form-input-wrapper">
+            <i class="fa-solid fa-envelope"></i>
+            <input type="email" id="inputStudentEmail" class="form-input" placeholder="Ví dụ: 2211004567@student.hiu.vn" required>
+          </div>
+        </div>
+
+        <!-- 5. Email nhận thông tin -->
+        <div class="form-group">
+          <label class="form-label" for="inputPersonalEmail">
+            <span>Email cá nhân nhận thông tin (ví dụ: abc@gmail.com) <span class="required">*</span></span>
+          </label>
+          <div class="form-input-wrapper">
+            <i class="fa-solid fa-at"></i>
+            <input type="email" id="inputPersonalEmail" class="form-input" placeholder="Ví dụ: nguyenvanan@gmail.com (Không nhập @student.hiu.vn)" required>
+          </div>
+        </div>
+
+        <!-- 6. Số điện thoại -->
+        <div class="form-group">
+          <label class="form-label" for="inputPhone">
+            <span>Số điện thoại <span class="required">*</span></span>
+          </label>
+          <div class="form-input-wrapper">
+            <i class="fa-solid fa-phone"></i>
+            <input type="tel" id="inputPhone" class="form-input" placeholder="Ví dụ: 0938692015" required autocomplete="tel">
+          </div>
+        </div>
+
+        <!-- Nút tiếp tục sang phần câu hỏi -->
+        <button type="submit" class="btn-start-chat" id="btnSubmitOnboard">
+          <i class="fa-solid fa-arrow-right"></i>
+          <span>Xác nhận thông tin & Đặt câu hỏi</span>
+        </button>
+      </form>
+    </div>
+
+    <!-- VIEW 2: GIAO DIỆN CHAT TRỰC TUYẾN TƯƠNG TÁC -->
+    <div class="chat-body-view" id="activeChatView" style="display: none;">
+      <!-- Thanh định danh người dùng đang chat -->
+      <div class="user-status-strip">
+        <div id="userDisplayTag">
+          <!-- Sẽ được điền tự động bằng JavaScript -->
+        </div>
+      </div>
+
+      <!-- Khung hiển thị các tin nhắn -->
+      <div class="chat-messages" id="chatMessages">
+        <!-- Tin nhắn người dùng & Bot sẽ append vào đây -->
+      </div>
+
+      <!-- Khung ô nhập câu hỏi khi sinh viên đã nhập đầy đủ thông tin -->
+      <div class="chat-inquiry-box" id="chatInquiryBox">
+        <!-- Hàng chọn: Bạn đang gặp vấn đề gì? -->
+        <div class="inquiry-issue-row">
+          <label class="inquiry-issue-label" for="chatIssueSelect">
+            <i class="fa-solid fa-circle-question"></i> Bạn đang gặp vấn đề gì?
+          </label>
+          <select id="chatIssueSelect" class="chat-issue-select">
+            <option value="portal">Gặp sự cố truy cập student.hiu.vn / OneUni</option>
+            <option value="office365">Quên mật khẩu đăng nhập Office 365</option>
+            <option value="authenticator">Vấn đề ứng dụng xác thực (Authenticator) / đổi thiết bị</option>
+            <option value="teams">Sự cố sử dụng Microsoft Teams</option>
+          </select>
+        </div>
+
+        <!-- Khung xem trước hình ảnh / video đính kèm (cho phép nhiều tệp, không bắt buộc) -->
+        <div class="image-preview-bar" id="imagePreviewBar" style="display: none;">
+          <div class="preview-thumbs-container" id="previewThumbsContainer">
+            <!-- Danh sách thumbnail các hình ảnh / video đính kèm -->
+          </div>
+          <div class="preview-info">
+            <span class="preview-filename" id="previewFileName">0 tệp đính kèm</span>
+            <div class="preview-actions">
+              <button type="button" class="btn-add-more-images" id="btnAddMoreImages" title="Thêm hình ảnh hoặc video khác">
+                <i class="fa-solid fa-plus"></i> Thêm tệp
+              </button>
+              <button type="button" class="btn-clear-all-images" id="btnClearAllImages" title="Gỡ tất cả tệp">
+                <i class="fa-solid fa-trash-can"></i> Xoá hết
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Thanh nhập mô tả chi tiết & nút gửi / đính kèm ảnh hoặc video -->
+        <div class="chat-input-bar">
+          <!-- Nút đính kèm ảnh / video (không bắt buộc) -->
+          <button type="button" class="btn-chat-attach" id="btnAttachImage" title="Đính kèm hình ảnh hoặc video vấn đề (không bắt buộc)">
+            <i class="fa-solid fa-paperclip"></i>
+            <span class="attach-badge-dot" id="attachBadgeDot" style="display: none;"></span>
+          </button>
+          <input type="file" id="chatImageInput" accept="image/*,video/*" multiple style="display: none;">
+
+          <input type="text" id="chatInput" class="chat-input" placeholder="Mô tả chi tiết vấn đề (không bắt buộc)..." autocomplete="off">
+          
+          <button class="btn-chat-send" id="btnChatSend" title="Gửi câu hỏi">
+            <i class="fa-solid fa-paper-plane"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Lightbox phóng to ảnh hoặc phát video đính kèm nếu sinh viên bấm xem -->
+  <div id="imageLightbox" class="image-lightbox-modal" style="display: none;" onclick="closeMediaLightbox()">
+    <span class="lightbox-close">&times;</span>
+    <img id="imageLightboxImg" src="" alt="Ảnh phóng to" onclick="event.stopPropagation()" style="display: none;">
+    <video id="mediaLightboxVideo" src="" controls autoplay onclick="event.stopPropagation()" style="display: none; max-width: 90%; max-height: 85vh; border-radius: 10px;"></video>
+  </div>
+
+  <!-- ================= MODAL CƠ SỞ DỮ LIỆU PHIẾU TIẾP NHẬN HỖ TRỢ ================= -->
+  <div id="hiuDatabaseModal" class="hiu-modal-backdrop" style="display: none;">
+    <div class="hiu-modal-box">
+      <div class="modal-header">
+        <div class="modal-title">
+          <i class="fa-solid fa-database"></i>
+          <div>
+            <h3>Cơ sở dữ liệu Phiếu tiếp nhận hỗ trợ</h3>
+            <span style="font-size: 0.76rem; opacity: 0.9; font-weight: 400;">Lưu trữ & quản lý phiếu tự động (IndexedDB & LocalStorage)</span>
+          </div>
+        </div>
+        <button class="modal-close-btn" onclick="closeHIUTicketDatabaseModal()" title="Đóng">&times;</button>
+      </div>
+
+      <div class="modal-body">
+        <div class="modal-desc-box">
+          <i class="fa-solid fa-circle-check" style="font-size: 1.1rem; color: #2563EB;"></i>
+          <div>
+            <strong>Cơ chế lưu trữ kép (Dual-Persistence):</strong> Phiếu hỗ trợ được ghi nhận trực tiếp vào <strong>IndexedDB</strong> và đồng bộ với <strong>LocalStorage</strong> của trình duyệt. Khi bạn bấm <em>Huỷ lập phiếu</em> hoặc <em>Xoá</em>, dữ liệu sẽ được xoá vĩnh viễn khỏi toàn bộ cơ sở dữ liệu.
+          </div>
+        </div>
+
+        <!-- Bộ lọc và thống kê -->
+        <div class="db-stats-bar">
+          <div class="db-stats-info">
+            <span>Tổng số phiếu: <strong id="dbTicketCount" style="color: #A51D24; font-size: 1rem;">0</strong></span>
+            <span class="db-badge-engine"><i class="fa-solid fa-server"></i> IndexedDB Ready</span>
+          </div>
+          <div class="db-search-box">
+            <i class="fa-solid fa-magnifying-glass" style="color: #94A3B8;"></i>
+            <input type="text" id="dbSearchInput" placeholder="Tìm theo Mã phiếu, Họ tên, MSSV..." oninput="filterDatabaseTickets()">
+          </div>
+        </div>
+
+        <!-- Danh sách phiếu trong CSDL -->
+        <div class="tickets-list" id="dbTicketsList">
+          <!-- Sẽ được hiển thị tự động qua JavaScript -->
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <div style="display: flex; gap: 8px;">
+          <button type="button" class="btn-modal-action clear" onclick="clearAllDatabaseTickets()" title="Xoá toàn bộ dữ liệu phiếu trong cơ sở dữ liệu">
+            <i class="fa-solid fa-trash-can"></i> Xoá toàn bộ CSDL
+          </button>
+          <button type="button" class="btn-modal-action" style="background: #E0E7FF; color: #3730A3;" onclick="exportDatabaseJSON()" title="Xuất dữ liệu CSDL dạng file JSON">
+            <i class="fa-solid fa-file-export"></i> Xuất JSON
+          </button>
+        </div>
+        <button type="button" class="btn-modal-action primary" onclick="closeHIUTicketDatabaseModal()">
+          Đóng
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="js/db.js?v=2.4"></script>
+  <script src="js/data.js?v=2.4"></script>
+  <script src="js/chatbox.js?v=2.4"></script>
+  <script src="js/main.js?v=2.4"></script>
+</body>
+</html>
