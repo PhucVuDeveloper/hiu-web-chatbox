@@ -529,7 +529,7 @@
 
       <div class="form-error-alert" id="formErrorAlert"></div>
 
-      <form class="onboard-form" id="hiuOnboardForm">
+      <form class="onboard-form" id="hiuOnboardForm" autocomplete="off">
         <!-- 1. Họ và tên sinh viên -->
         <div class="form-group">
           <label class="form-label" for="inputFullName">
@@ -537,7 +537,7 @@
           </label>
           <div class="form-input-wrapper">
             <i class="fa-solid fa-user"></i>
-            <input type="text" id="inputFullName" class="form-input" placeholder="Nhập đầy đủ Họ, tên đệm và tên (VD: Nguyễn Văn An)" required autocomplete="name">
+            <input type="text" id="inputFullName" class="form-input" placeholder="Nhập đầy đủ Họ, tên đệm và tên (VD: Nguyễn Văn An)" required autocomplete="off">
           </div>
         </div>
 
@@ -548,7 +548,7 @@
           </label>
           <div class="form-input-wrapper">
             <i class="fa-solid fa-id-card"></i>
-            <input type="text" id="inputMssv" class="form-input" placeholder="Nhập 10 chữ số (VD: 2211004567)" maxlength="10" minlength="10" pattern="[0-9]{10}" inputmode="numeric" required>
+            <input type="text" id="inputMssv" class="form-input" placeholder="Nhập 10 chữ số (VD: 2211004567)" maxlength="10" minlength="10" pattern="[0-9]{10}" inputmode="numeric" autocomplete="off" required>
           </div>
         </div>
 
@@ -559,7 +559,7 @@
           </label>
           <div class="form-input-wrapper">
             <i class="fa-solid fa-graduation-cap"></i>
-            <input type="text" id="inputMajorClass" class="form-input" placeholder="Ví dụ: CNTT - 22DHIT01" required>
+            <input type="text" id="inputMajorClass" class="form-input" placeholder="Ví dụ: CNTT - 22DHIT01" autocomplete="off" required>
           </div>
         </div>
 
@@ -570,7 +570,7 @@
           </label>
           <div class="form-input-wrapper">
             <i class="fa-solid fa-envelope"></i>
-            <input type="email" id="inputStudentEmail" class="form-input" placeholder="Ví dụ: 2211004567@student.hiu.vn" autocapitalize="none" spellcheck="false" required>
+            <input type="email" id="inputStudentEmail" class="form-input" placeholder="Ví dụ: 2211004567@student.hiu.vn" autocapitalize="none" spellcheck="false" autocomplete="off" required>
           </div>
         </div>
 
@@ -581,7 +581,7 @@
           </label>
           <div class="form-input-wrapper">
             <i class="fa-solid fa-at"></i>
-            <input type="email" id="inputPersonalEmail" class="form-input" placeholder="Ví dụ: nguyenvanan@gmail.com (Không nhập @student.hiu.vn)" autocapitalize="none" spellcheck="false" required>
+            <input type="email" id="inputPersonalEmail" class="form-input" placeholder="Ví dụ: nguyenvanan@gmail.com (Không nhập @student.hiu.vn)" autocapitalize="none" spellcheck="false" autocomplete="off" required>
           </div>
         </div>
 
@@ -592,7 +592,7 @@
           </label>
           <div class="form-input-wrapper">
             <i class="fa-solid fa-phone"></i>
-            <input type="tel" id="inputPhone" class="form-input" placeholder="Ví dụ: 0938692015" required autocomplete="tel">
+            <input type="tel" id="inputPhone" class="form-input" placeholder="Ví dụ: 0938692015" required autocomplete="off">
           </div>
         </div>
 
@@ -734,9 +734,9 @@
   </div>
 
   <!-- Scripts -->
-  <script src="js/db.js?v=2.4"></script>
-  <script src="js/data.js?v=2.4"></script>
-  <script src="js/chatbox.js?v=2.4"></script>
-  <script src="js/main.js?v=2.4"></script>
+  <script src="js/db.js?v=2.5"></script>
+  <script src="js/data.js?v=2.5"></script>
+  <script src="js/chatbox.js?v=2.5"></script>
+  <script src="js/main.js?v=2.5"></script>
 </body>
 </html>

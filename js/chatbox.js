@@ -65,19 +65,31 @@ document.addEventListener("DOMContentLoaded", () => {
   // 1. Storage & State Initialization
   // -------------------------------------------------------------
   function loadSavedSession() {
-    // Mỗi lần load lại trang hay vào lại trang web đều đưa về phần nhập thông tin
+    // Mỗi lần load lại trang hay vào lại trang web đều xoá và làm mới từ đầu
     clearSession();
+    // Đảm bảo xoá sạch nếu trình duyệt cố tình tự khôi phục form sau khi render
+    setTimeout(() => {
+      wipeAllInputs();
+    }, 100);
   }
 
   function saveSession() {
+    // Không lưu phiên làm việc vào storage qua các lần reload
+    // Phiếu hỗ trợ đã được lưu độc lập, an toàn và vĩnh viễn trong CSDL HIUDatabase
+  }
+
+  function wipeAllInputs() {
     try {
-      if (currentUser) {
-        sessionStorage.setItem("hiu_chat_user", JSON.stringify(currentUser));
-        sessionStorage.setItem("hiu_chat_history", JSON.stringify(chatHistory));
-      }
-    } catch (e) {
-      console.warn("Could not save to storage", e);
-    }
+      if (onboardForm) onboardForm.reset();
+    } catch (e) {}
+    if (inputName) inputName.value = "";
+    if (inputMssv) inputMssv.value = "";
+    if (inputMajorClass) inputMajorClass.value = "";
+    if (inputStudentEmail) inputStudentEmail.value = "";
+    if (inputPersonalEmail) inputPersonalEmail.value = "";
+    if (inputPhone) inputPhone.value = "";
+    if (chatInput) chatInput.value = "";
+    if (chatIssueSelect) chatIssueSelect.selectedIndex = 0;
   }
 
   function clearSession() {
@@ -90,7 +102,14 @@ document.addEventListener("DOMContentLoaded", () => {
     currentUser = null;
     chatHistory = [];
     clearAttachedImages();
-    if (onboardForm) onboardForm.reset();
+    wipeAllInputs();
+    if (chatMessages) chatMessages.innerHTML = "";
+    if (userDisplayTag) userDisplayTag.innerHTML = "";
+    if (formErrorAlert) {
+      formErrorAlert.textContent = "";
+      formErrorAlert.style.display = "none";
+    }
+    if (chatContainer) chatContainer.classList.remove("active");
     showOnboardingView();
   }
 
@@ -1902,7 +1921,22 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
   // -------------------------------------------------------------
-  // Initial Boot
+  // Initial Boot & Reload Event Listeners
   // -------------------------------------------------------------
   loadSavedSession();
+
+  // Đảm bảo khi tải lại trang (F5, refresh, back/forward cache):
+  // Xoá và làm mới sạch sẽ toàn bộ thông tin phiên làm việc
+  window.addEventListener("pageshow", () => {
+    clearSession();
+  });
+
+  window.addEventListener("beforeunload", () => {
+    try {
+      sessionStorage.removeItem("hiu_chat_user");
+      sessionStorage.removeItem("hiu_chat_history");
+      localStorage.removeItem("hiu_chat_user");
+      localStorage.removeItem("hiu_chat_history");
+    } catch (e) {}
+  });
 });
