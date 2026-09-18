@@ -809,9 +809,17 @@ document.addEventListener("DOMContentLoaded", () => {
       const verifiedMajorClass = majorValidation.normalized || majorClass;
       if (inputMajorClass) inputMajorClass.value = verifiedMajorClass;
 
-      // 4. Validate Email sinh viên (Không được viết hoa, bắt buộc phải nhập đúng chữ sau @ là student.hiu.vn)
+      // 4. Validate Email sinh viên (Không được viết hoa, không được ghi dấu tiếng Việt, bắt buộc phải nhập đúng chữ sau @ là student.hiu.vn)
       if (/[A-Z]/.test(studentEmail)) {
         showFormError("Email sinh viên không được viết hoa. Vui lòng nhập toàn bộ bằng chữ thường (Ví dụ: 2211004567@student.hiu.vn).");
+        if (inputStudentEmail) inputStudentEmail.focus();
+        return;
+      }
+
+      const vnDiacriticsPattern = /[àáạảãâầấậẩẫăằắặẳẵèéẹẻẽêềếệểễìíịỉĩòóọỏõôồốộổỗơờớợởỡùúụủũưừứựửữỳýỵỷỹđĐ]/i;
+      const nonAsciiPattern = /[^\x00-\x7F]/;
+      if (vnDiacriticsPattern.test(studentEmail) || nonAsciiPattern.test(studentEmail)) {
+        showFormError("Email sinh viên không được ghi dấu tiếng Việt. Vui lòng nhập địa chỉ email không dấu (Ví dụ: 2211004567@student.hiu.vn).");
         if (inputStudentEmail) inputStudentEmail.focus();
         return;
       }
@@ -822,6 +830,11 @@ document.addEventListener("DOMContentLoaded", () => {
         if (inputStudentEmail) inputStudentEmail.focus();
         return;
       }
+      if (!/^[a-z0-9._-]+$/.test(studentEmailParts[0])) {
+        showFormError("Email sinh viên chứa ký tự không hợp lệ. Vui lòng nhập đúng định dạng (Ví dụ: 2211004567@student.hiu.vn).");
+        if (inputStudentEmail) inputStudentEmail.focus();
+        return;
+      }
       const studentDomain = studentEmailParts[1].toLowerCase().trim();
       if (studentDomain !== "student.hiu.vn" && studentDomain !== "hiu.vn") {
         showFormError("Email sinh viên bắt buộc phải nhập đúng những chữ sau @ là student.hiu.vn (Ví dụ: 2211004567@student.hiu.vn).");
@@ -829,9 +842,15 @@ document.addEventListener("DOMContentLoaded", () => {
         return;
       }
 
-      // 5. Validate Email nhận thông tin (Không được viết hoa, bắt buộc phải nhập đúng tên miền sau @)
+      // 5. Validate Email nhận thông tin (Không được viết hoa, không được ghi dấu tiếng Việt, bắt buộc phải nhập đúng tên miền sau @)
       if (/[A-Z]/.test(personalEmail)) {
         showFormError("Email nhận thông tin không được viết hoa. Vui lòng nhập toàn bộ bằng chữ thường (Ví dụ: abc@gmail.com).");
+        if (inputPersonalEmail) inputPersonalEmail.focus();
+        return;
+      }
+
+      if (vnDiacriticsPattern.test(personalEmail) || nonAsciiPattern.test(personalEmail)) {
+        showFormError("Email nhận thông tin không được ghi dấu tiếng Việt. Vui lòng nhập địa chỉ email không dấu (Ví dụ: nguyenvanan@gmail.com).");
         if (inputPersonalEmail) inputPersonalEmail.focus();
         return;
       }
@@ -839,6 +858,11 @@ document.addEventListener("DOMContentLoaded", () => {
       const personalEmailParts = personalEmail.split("@");
       if (personalEmailParts.length !== 2 || !personalEmailParts[0].trim()) {
         showFormError("Email nhận thông tin không hợp lệ. Vui lòng nhập đúng định dạng email (Ví dụ: abc@gmail.com).");
+        if (inputPersonalEmail) inputPersonalEmail.focus();
+        return;
+      }
+      if (!/^[a-z0-9._%+-]+$/.test(personalEmailParts[0])) {
+        showFormError("Email nhận thông tin chứa ký tự không hợp lệ. Vui lòng nhập đúng định dạng (Ví dụ: abc@gmail.com).");
         if (inputPersonalEmail) inputPersonalEmail.focus();
         return;
       }
