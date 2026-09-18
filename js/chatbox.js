@@ -90,6 +90,28 @@ document.addEventListener("DOMContentLoaded", () => {
     if (inputPhone) inputPhone.value = "";
     if (chatInput) chatInput.value = "";
     if (chatIssueSelect) chatIssueSelect.selectedIndex = 0;
+    randomizeInputNames();
+  }
+
+  // Gán ngẫu nhiên thuộc tính name để triệt tiêu việc trình duyệt tự ý gợi ý thông tin cũ từ các tab khác
+  function randomizeInputNames() {
+    const fields = [
+      inputName,
+      inputMssv,
+      inputMajorClass,
+      inputStudentEmail,
+      inputPersonalEmail,
+      inputPhone,
+      chatInput
+    ];
+    fields.forEach((field) => {
+      if (field) {
+        const randKey = "hiu_fld_" + Math.random().toString(36).slice(2, 9);
+        field.setAttribute("name", randKey);
+        field.setAttribute("autocomplete", "new-password");
+        field.setAttribute("data-lpignore", "true");
+      }
+    });
   }
 
   function clearSession() {
