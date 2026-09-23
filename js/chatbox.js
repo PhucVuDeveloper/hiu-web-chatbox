@@ -46,7 +46,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const imageLightboxImg = document.getElementById("imageLightboxImg");
   const mediaLightboxVideo = document.getElementById("mediaLightboxVideo");
 
-  // Issue Dictionary (Đã bỏ tùy chọn "Vấn đề khác")
+  // Issue Dictionary 
   const ISSUE_LABELS = {
     "portal": "Gặp sự cố truy cập student.hiu.vn / OneUni",
     "office365": "Quên mật khẩu đăng nhập Office 365",
@@ -538,7 +538,7 @@ document.addEventListener("DOMContentLoaded", () => {
       .toLowerCase();
   }
 
-  // Damerau-Levenshtein Distance (hỗ trợ phát hiện hoán vị 2 ký tự liền kề như CTNT -> CNTT)
+  // Damerau-Levenshtein Distance (hỗ trợ phát hiện hoán vị 2 ký tự liền kề như YCHT -> YHCT)
   function damerauLevenshteinDistance(s1, s2) {
     s1 = s1.toLowerCase();
     s2 = s2.toLowerCase();
@@ -567,7 +567,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function parseMajorAndClass(input) {
     if (!input || !input.trim()) {
-      return { valid: false, message: "Vui lòng nhập thông tin Ngành và Lớp học (Ví dụ: CNTT - 22DHIT01)." };
+      return { valid: false, message: "Vui lòng nhập thông tin Ngành và Lớp học (Ví dụ: YHCT - KY26QĐV-YC4)." };
     }
 
     let raw = input.trim().replace(/\s+/g, " ");
@@ -632,7 +632,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (!majorPart) {
       return {
         valid: false,
-        message: `Bạn chưa nhập Tên ngành học. Vui lòng ghi cả Tên ngành và Lớp (Ví dụ: CNTT - ${classPart || '22DHIT01'}).`
+        message: `Bạn chưa nhập Tên ngành học. Vui lòng ghi cả Tên ngành và Lớp (Ví dụ: YHCT - ${classPart || 'KY26QĐV-YC4'}).`
       };
     }
 
@@ -640,7 +640,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (!classPart) {
       return {
         valid: false,
-        message: `Bạn chưa nhập Lớp học. Vui lòng ghi cả Ngành và Lớp theo định dạng: [Ngành] - [Lớp] (Ví dụ: ${majorPart} - 22DHIT01).`
+        message: `Bạn chưa nhập Lớp học. Vui lòng ghi cả Ngành và Lớp theo định dạng: [Ngành] - [Lớp] (Ví dụ: ${majorPart} - KY26QĐV-YC4).`
       };
     }
 
@@ -1839,7 +1839,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   window.deleteTicketFromDatabase = async function(ticketId) {
-    if (!confirm(`Bạn có chắc chắn muốn xoá vĩnh viễn phiếu #${ticketId} khỏi cơ sở dữ liệu không?`)) {
+    if (!confirm(`Bạn có chắc chắn muốn xoá phiếu #${ticketId} không?`)) {
       return;
     }
 
