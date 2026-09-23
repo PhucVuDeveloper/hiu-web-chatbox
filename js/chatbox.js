@@ -1616,7 +1616,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Huỷ lập phiếu: Xoá vĩnh viễn khỏi cơ sở dữ liệu và cập nhật giao diện
   window.cancelSupportTicket = async function(ticketId) {
-    if (!confirm(`Bạn có chắc chắn muốn huỷ lập phiếu hỗ trợ #${ticketId} không?\nThao tác này sẽ xoá hoàn toàn phiếu khỏi cơ sở dữ liệu.`)) {
+    if (!confirm(`Bạn có chắc chắn muốn huỷ lập phiếu hỗ trợ #${ticketId} không?`)) {
       return;
     }
 
