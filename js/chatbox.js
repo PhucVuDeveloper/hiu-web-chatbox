@@ -46,7 +46,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const imageLightboxImg = document.getElementById("imageLightboxImg");
   const mediaLightboxVideo = document.getElementById("mediaLightboxVideo");
 
-  // Issue Dictionary 
+  // Issue Dictionary (Đã bỏ tùy chọn "Vấn đề khác")
   const ISSUE_LABELS = {
     "portal": "Gặp sự cố truy cập student.hiu.vn / OneUni",
     "office365": "Quên mật khẩu đăng nhập Office 365",
@@ -167,9 +167,10 @@ document.addEventListener("DOMContentLoaded", () => {
   };
 
   // -------------------------------------------------------------
-  // Helper: Kiểm tra lỗi chính tả Họ và tên tiếng Việt
   // -------------------------------------------------------------
-  function validateVietnameseFullName(nameStr) {
+  // Helper: Kiểm tra tính hợp lệ Họ và tên (Hỗ trợ cả tên người Việt và người nước ngoài)
+  // -------------------------------------------------------------
+  function validateFullName(nameStr) {
     if (!nameStr || !nameStr.trim()) {
       return { valid: false, message: "Vui lòng nhập đầy đủ Họ và tên." };
     }
@@ -181,136 +182,105 @@ document.addEventListener("DOMContentLoaded", () => {
       return { valid: false, message: "Họ và tên không được chứa chữ số. Vui lòng chỉ nhập chữ cái." };
     }
 
-    // 2. Không được chứa ký tự đặc biệt (cho phép chữ cái Unicode tiếng Việt, khoảng trắng, và dấu nháy đơn)
-    const specialCharsRegex = /[^\p{L}\s']/u;
+    // 2. Không được chứa ký tự đặc biệt (cho phép chữ cái Unicode tiếng Việt/Quốc tế, khoảng trắng, dấu nháy đơn ' và dấu gạch nối -)
+    const specialCharsRegex = /[^\p{L}\s'-]/u;
     if (specialCharsRegex.test(raw)) {
-      return { valid: false, message: "Họ và tên không được chứa ký tự đặc biệt. Vui lòng chỉ nhập chữ cái tiếng Việt." };
+      return { valid: false, message: "Họ và tên không được chứa ký tự đặc biệt (@, #, $, %, số...). Vui lòng chỉ nhập chữ cái." };
     }
 
-    // 3. Tối thiểu 3 từ (Họ, tên đệm và tên)
+    // 3. Tối thiểu 2 từ (Họ và Tên, áp dụng cho cả tên người Việt và quốc tế, ví dụ: Nguyễn Văn An hoặc John Smith)
     const words = raw.split(" ").filter(Boolean);
-    if (words.length < 3) {
-      return { valid: false, message: "Vui lòng nhập đầy đủ cả Họ, tên đệm và tên (tối thiểu 3 từ, ví dụ: Nguyễn Văn An)." };
+    if (words.length < 2) {
+      return { valid: false, message: "Vui lòng nhập đầy đủ cả Họ và Tên (tối thiểu 2 từ, ví dụ: Nguyễn Văn An hoặc John Smith)." };
     }
 
-    // 4. Bắt buộc phải có dấu tiếng Việt (tránh nhập tiếng Việt không dấu)
-    const vnDiacriticsRegex = /[àáảãạăằắẳẵặâầấẩẫậèéẻẽẹêềếểễệìíỉĩịòóỏõọôồốổỗộơờớởỡợùúủũụưừứửữựỳýỷỹỵđĐÀÁẢÃẠĂẰẮẲẴẶÂẦẤẨẪẬÈÉẺẼẸÊỀẾỂỄỆÌÍỈĨỊÒÓỎÕỌÔỒỐỔỖỘƠỜỚỞỠỢÙÚỦŨỤƯỪỨỬỮỰỲÝỶỸỴ]/i;
-    if (!vnDiacriticsRegex.test(raw)) {
-      return { 
-        valid: false, 
-        message: "Họ và tên bắt buộc phải nhập bằng tiếng Việt có dấu đầy đủ và đúng chính tả (Ví dụ: Nguyễn Văn An)." 
-      };
+    // 4. Không được chứa ký tự lặp liên tiếp từ 3 lần trở lên (như Aaaaa, Jooohn, Smiiith)
+    if (/(\p{L})\1{2,}/u.test(raw)) {
+      return { valid: false, message: "Họ và tên chứa ký tự lặp lại bất thường. Vui lòng kiểm tra lại!" };
     }
 
-    // 5. Kiểm tra các ký tự lạ không thuộc bảng chữ cái tiếng Việt (f, j, w, z) - thường do lỗi gõ Telex
-    const foreignChars = raw.match(/[fjwzFJWZ]/g);
-    if (foreignChars) {
-      const uniqueChars = [...new Set(foreignChars.map(c => c.toUpperCase()))].join(", ");
-      return { 
-        valid: false, 
-        message: `Họ và tên chứa ký tự "${uniqueChars}" không thuộc bảng chữ cái tiếng Việt (thường do lỗi bộ gõ Telex như w, f, j, z). Vui lòng kiểm tra lại!` 
-      };
-    }
+    // Tập nguyên âm toàn diện (bao gồm nguyên âm tiếng Việt, tiếng Anh và các ngôn ngữ Latin/châu Âu)
+    const vowelsPattern = /[aeiouyàáảãạăằắẳẵặâầấẩẫậèéẻẽẹêềếểễệìíỉĩịòóỏõọôồốổỗộơờớởỡợùúủũụưừứửữựỳýỷỹỵäëïöüáéíóúñãõâêîôûàèìòù]/i;
 
-    // Tập nguyên âm tiếng Việt (có dấu và không dấu)
-    const vnVowelsPattern = /[aàáảãạăằắẳẵặâầấẩẫậeèéẻẽẹêềếểễệiìíỉĩịoòóỏõọôồốổỗộơờớởỡợuùúủũụưừứửữựyỳýỷỹỵ]/i;
-
-    // Ký tự lặp bất thường: phụ âm lặp đôi (bb, cc, dd, ff, gg, hh, kk, ll, mm, nn, pp, rr, ss, tt, vv, xx)
-    const doubleConsonantsRegex = /([b-df-hj-np-tv-zB-DF-HJ-NP-TV-Z])\1/i;
-    // Chuỗi gõ Telex dính phím chưa hoàn thành (aa, ee, oo, aw, ow, uw, dd)
-    const rawTelexVowels = /(aa|aw|ee|oo|ow|uw|dd)/i;
-
-    // 6. Kiểm tra từng từ (âm tiết)
+    // 5. Kiểm tra từng từ trong họ và tên
     for (let i = 0; i < words.length; i++) {
       const word = words[i];
-      const cleanWord = word.replace(/['’]/g, "");
+      // Nếu từ có dấu nối như Jean-Luc, Mary-Jane
+      const subWords = word.split("-").filter(Boolean);
 
-      // A. Không được viết tắt (từ chỉ gồm 1 chữ cái phụ âm)
-      if (cleanWord.length === 1 && !vnVowelsPattern.test(cleanWord)) {
-        return { 
-          valid: false, 
-          message: `Từ "${word}" bị viết tắt. Vui lòng nhập đầy đủ cả Họ, tên đệm và tên, không viết tắt (Ví dụ: Nguyễn Văn An)!` 
-        };
-      }
+      for (let j = 0; j < subWords.length; j++) {
+        const sub = subWords[j];
+        const cleanWord = sub.replace(/['’]/g, "");
 
-      // B. Mỗi từ bắt buộc phải có nguyên âm tiếng Việt
-      if (!vnVowelsPattern.test(cleanWord)) {
-        return { 
-          valid: false, 
-          message: `Từ "${word}" sai chính tả tiếng Việt (thiếu nguyên âm hợp lệ). Vui lòng nhập đúng họ và tên có dấu!` 
-        };
-      }
+        if (!cleanWord) continue;
 
-      // C. Lặp phụ âm bất thường (nn, tt, dd...)
-      const doubleMatch = cleanWord.match(doubleConsonantsRegex);
-      if (doubleMatch) {
-        return { 
-          valid: false, 
-          message: `Từ "${word}" bị lặp ký tự "${doubleMatch[0]}" sai chính tả. Vui lòng kiểm tra lại bộ gõ tiếng Việt!` 
-        };
-      }
+        // A. Không được viết tắt (từ chỉ gồm 1 chữ cái phụ âm, ví dụ: "V" trong "Nguyễn V An" hay "J" trong "J Smith")
+        if (cleanWord.length === 1 && !vowelsPattern.test(cleanWord)) {
+          return { 
+            valid: false, 
+            message: `Từ "${sub}" bị viết tắt. Vui lòng nhập đầy đủ cả Họ và Tên, không viết tắt (Ví dụ: Nguyễn Văn An hoặc John Smith)!` 
+          };
+        }
 
-      // D. Ký tự gõ Telex chưa hoàn thành (aa, ee, oo, aw, ow, uw...)
-      const telexMatch = cleanWord.match(rawTelexVowels);
-      if (telexMatch) {
-        return { 
-          valid: false, 
-          message: `Từ "${word}" chứa ký tự gõ Telex chưa hoàn thành "${telexMatch[0]}". Vui lòng bật bộ gõ tiếng Việt có dấu!` 
-        };
-      }
+        // B. Mỗi từ bắt buộc phải có ít nhất 1 nguyên âm
+        if (!vowelsPattern.test(cleanWord)) {
+          return { 
+            valid: false, 
+            message: `Từ "${sub}" không hợp lệ (thiếu nguyên âm). Vui lòng kiểm tra lại họ và tên!` 
+          };
+        }
 
-      // E. Âm cuối (coda) hợp lệ trong tiếng Việt (kết thúc bằng nguyên âm hoặc c, ch, m, n, ng, nh, p, t; ngoại lệ họ Ksor)
-      const isKsor = cleanWord.toLowerCase() === "ksor";
-      let isEndingValid = false;
-      if (isKsor) {
-        isEndingValid = true;
-      } else if (vnVowelsPattern.test(cleanWord.slice(-1))) {
-        isEndingValid = true;
-      } else if (/(ch|nh|ng)$/i.test(cleanWord)) {
-        isEndingValid = true;
-      } else if (/[cmnptCMNPT]$/i.test(cleanWord)) {
-        isEndingValid = true;
-      }
+        // C. Quy tắc chính tả danh từ riêng: Chữ cái đầu mỗi từ bắt buộc phải viết hoa
+        const firstChar = cleanWord.charAt(0);
+        const restChars = cleanWord.slice(1);
+        if (firstChar !== firstChar.toUpperCase() || firstChar === firstChar.toLowerCase()) {
+          return { 
+            valid: false, 
+            message: `Họ và tên là danh từ riêng, từ "${sub}" phải viết hoa chữ cái đầu (Ví dụ: Nguyễn Văn An hoặc John Smith)!` 
+          };
+        }
 
-      if (!isEndingValid) {
-        const lastChar = cleanWord.slice(-1).toUpperCase();
-        return { 
-          valid: false, 
-          message: `Từ "${word}" bị sai chính tả ở âm cuối (kết thúc bằng "${lastChar}"). Vui lòng kiểm tra lại dấu tiếng Việt!` 
-        };
-      }
+        // D. Kiểm tra viết hoa lộn xộn trong từ (ngoại lệ cho trường hợp bật Caps Lock toàn bộ hoặc tiền tố McDonald / O'Connor)
+        const isAllUpper = raw === raw.toUpperCase();
+        const isStandardTitle = firstChar === firstChar.toUpperCase() && restChars === restChars.toLowerCase();
+        const isSpecialPrefix = /^(Mc[A-Z]|O'[A-Z]|D'[A-Z]|H'[A-Z])/i.test(sub);
 
-      // F. Quy tắc chính tả danh từ riêng: Chữ cái đầu mỗi từ bắt buộc phải viết hoa
-      const firstChar = cleanWord.charAt(0);
-      const restChars = cleanWord.slice(1);
-      if (firstChar !== firstChar.toUpperCase() || firstChar === firstChar.toLowerCase()) {
-        return { 
-          valid: false, 
-          message: `Họ và tên là danh từ riêng, từ "${word}" phải viết hoa chữ cái đầu (Ví dụ: Nguyễn Văn An)!` 
-        };
-      }
-
-      // Chữ cái tiếp theo không được viết hoa lộn xộn
-      const isAllUpper = cleanWord === cleanWord.toUpperCase();
-      const isTitle = firstChar === firstChar.toUpperCase() && restChars === restChars.toLowerCase();
-      if (!isTitle && !isAllUpper) {
-        return { 
-          valid: false, 
-          message: `Từ "${word}" viết hoa không đúng quy tắc chính tả. Vui lòng viết đúng dạng chuẩn (Ví dụ: Nguyễn Văn An)!` 
-        };
+        if (!isAllUpper && !isStandardTitle && !isSpecialPrefix) {
+          return { 
+            valid: false, 
+            message: `Từ "${sub}" viết hoa không đúng quy tắc chính tả. Vui lòng viết đúng dạng chuẩn (Ví dụ: Nguyễn Văn An hoặc John Smith)!` 
+          };
+        }
       }
     }
 
-    // Chuẩn hoá họ tên về Title Case chuẩn mực (ví dụ: NGUYỄN VĂN AN -> Nguyễn Văn An)
-    const normalized = words.map(w => {
-      if (/^[hH]'/i.test(w)) {
-        return "H'" + w.slice(2).charAt(0).toUpperCase() + w.slice(3).toLowerCase();
+    // 6. Chuẩn hoá họ tên về Title Case chuẩn mực (hỗ trợ cả Caps Lock như NGUYỄN VĂN AN -> Nguyễn Văn An, JOHN SMITH -> John Smith)
+    const normalized = words.map(word => {
+      if (word.includes("-")) {
+        return word.split("-").map(sub => formatSubWord(sub)).join("-");
       }
-      return w.charAt(0).toUpperCase() + w.slice(1).toLowerCase();
+      return formatSubWord(word);
     }).join(" ");
 
     return { valid: true, normalizedName: normalized };
   }
+
+  function formatSubWord(w) {
+    if (!w) return "";
+    // Xử lý các tên có tiền tố nháy đơn như H'Hen, O'Connor, D'Angelo
+    if (/^[a-zA-Z]['’]/i.test(w)) {
+      const prefix = w.slice(0, 2);
+      const rest = w.slice(2);
+      return prefix.toUpperCase() + (rest ? rest.charAt(0).toUpperCase() + rest.slice(1).toLowerCase() : "");
+    }
+    // Xử lý các tên có tiền tố Mc như McDonald
+    if (/^mc[a-zA-Z]/i.test(w) && w.length > 3) {
+      return "Mc" + w.charAt(2).toUpperCase() + w.slice(3).toLowerCase();
+    }
+    return w.charAt(0).toUpperCase() + w.slice(1).toLowerCase();
+  }
+
+  const validateVietnameseFullName = validateFullName;
 
   if (inputName) {
     inputName.addEventListener("blur", () => {
@@ -538,7 +508,7 @@ document.addEventListener("DOMContentLoaded", () => {
       .toLowerCase();
   }
 
-  // Damerau-Levenshtein Distance (hỗ trợ phát hiện hoán vị 2 ký tự liền kề như YCHT -> YHCT)
+  // Damerau-Levenshtein Distance (hỗ trợ phát hiện hoán vị 2 ký tự liền kề như CTNT -> CNTT)
   function damerauLevenshteinDistance(s1, s2) {
     s1 = s1.toLowerCase();
     s2 = s2.toLowerCase();
@@ -579,20 +549,17 @@ document.addEventListener("DOMContentLoaded", () => {
     let classPart = "";
 
     // 1. Phân tách bằng các dấu phân cách phổ biến (-, /, ,, _, |, từ "lớp")
-    if (/[-/,|_]/.test(cleaned)) {
-      const parts = cleaned.split(/[-/,|_]/).map(p => p.trim()).filter(Boolean);
-      if (parts.length >= 2) {
-        const classRegex = /^[0-9]{2}[A-Za-z0-9]+$/;
-        if (classRegex.test(parts[0]) && !classRegex.test(parts[1])) {
-          classPart = parts[0];
-          majorPart = parts.slice(1).join(" - ");
-        } else {
-          majorPart = parts[0];
-          classPart = parts.slice(1).join(" - ");
-        }
-      } else if (parts.length === 1) {
-        majorPart = parts[0];
-      }
+    // Ưu tiên tách theo " - " (có khoảng trắng quanh dấu gạch ngang) hoặc "/", ",", "|", "_"
+    // để bảo toàn nguyên vẹn các mã lớp có chứa dấu gạch ngang bên trong như KY26QĐV-YC4
+    const spacedSepMatch = cleaned.match(/^(.+?)(?:\s+[-/|_]\s+|\s*[/,|]\s*)(.+)$/);
+    if (spacedSepMatch) {
+      majorPart = spacedSepMatch[1].trim();
+      classPart = spacedSepMatch[2].trim();
+    } else if (/[-]/.test(cleaned)) {
+      // Trường hợp gõ dính liền không khoảng trắng
+      const firstDashIdx = cleaned.indexOf("-");
+      majorPart = cleaned.substring(0, firstDashIdx).trim();
+      classPart = cleaned.substring(firstDashIdx + 1).trim();
     } else if (/\s+(lớp|lop|khoá|khoa|k)\s+/i.test(cleaned)) {
       const splitMatch = cleaned.split(/\s+(?:lớp|lop|khoá|khoa|k)\s+/i);
       majorPart = splitMatch[0].trim();
@@ -602,18 +569,33 @@ document.addEventListener("DOMContentLoaded", () => {
       const tokens = cleaned.split(" ");
       if (tokens.length >= 2) {
         const lastToken = tokens[tokens.length - 1];
-        if (/^[0-9]{2}[A-Za-z0-9]+$/i.test(lastToken) || /^[A-Za-z]{2,6}[0-9]{2,4}$/i.test(lastToken)) {
+        if (/^[0-9]{2}[A-Za-z0-9]+$/i.test(lastToken) || /^[A-Za-z]{2,6}[0-9]{2,4}/i.test(lastToken) || /KY[0-9]{2}/i.test(lastToken)) {
           classPart = lastToken;
           majorPart = tokens.slice(0, tokens.length - 1).join(" ");
         } else {
           majorPart = cleaned;
         }
       } else {
-        if (/^[0-9]{2}[A-Za-z0-9]+$/i.test(cleaned)) {
-          classPart = cleaned;
-        } else {
-          majorPart = cleaned;
-        }
+        majorPart = cleaned;
+      }
+    }
+
+    // Đảo ngược nếu sinh viên nhập [Lớp] - [Ngành]
+    if (majorPart && classPart) {
+      const isPart2Major = HIU_MAJORS.some(m => 
+        m.name.toLowerCase() === classPart.toLowerCase() || 
+        m.abbr.toLowerCase() === classPart.toLowerCase() ||
+        m.aliases.some(a => a.toLowerCase() === classPart.toLowerCase())
+      );
+      const isPart1Major = HIU_MAJORS.some(m => 
+        m.name.toLowerCase() === majorPart.toLowerCase() || 
+        m.abbr.toLowerCase() === majorPart.toLowerCase() ||
+        m.aliases.some(a => a.toLowerCase() === majorPart.toLowerCase())
+      );
+      if (isPart2Major && !isPart1Major) {
+        const temp = majorPart;
+        majorPart = classPart;
+        classPart = temp;
       }
     }
 
@@ -781,8 +763,8 @@ document.addEventListener("DOMContentLoaded", () => {
       const personalEmail = (inputPersonalEmail ? inputPersonalEmail.value : "").trim();
       const phone = (inputPhone ? inputPhone.value : "").trim();
 
-      // 1. Validate Họ & Tên (Kiểm tra lỗi chính tả tiếng Việt toàn diện)
-      const nameValidation = validateVietnameseFullName(fullName);
+      // 1. Validate Họ & Tên (Hỗ trợ cả tên người Việt và tên người nước ngoài)
+      const nameValidation = validateFullName(fullName);
       if (!nameValidation.valid) {
         showFormError(nameValidation.message);
         inputName.focus();
@@ -1616,7 +1598,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Huỷ lập phiếu: Xoá vĩnh viễn khỏi cơ sở dữ liệu và cập nhật giao diện
   window.cancelSupportTicket = async function(ticketId) {
-    if (!confirm(`Bạn có chắc chắn muốn huỷ lập phiếu hỗ trợ #${ticketId} không?`)) {
+    if (!confirm(`Bạn có chắc chắn muốn huỷ lập phiếu hỗ trợ #${ticketId} không?\nThao tác này sẽ xoá hoàn toàn phiếu khỏi cơ sở dữ liệu.`)) {
       return;
     }
 
@@ -1839,7 +1821,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   window.deleteTicketFromDatabase = async function(ticketId) {
-    if (!confirm(`Bạn có chắc chắn muốn xoá phiếu #${ticketId} không?`)) {
+    if (!confirm(`Bạn có chắc chắn muốn xoá vĩnh viễn phiếu #${ticketId} khỏi cơ sở dữ liệu không?`)) {
       return;
     }
 
